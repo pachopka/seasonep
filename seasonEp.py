@@ -75,7 +75,7 @@ def crIndexRedis() -> None:
 # Search in Redis Index using Vector Search Similarity (VSS)
 def shIndexRedisVss() -> list:
 
-    print('Combine and search on Redis');
+    print('Combine and search on Redis')
     #Prepare a query, limit results to 0.60 radius
     range_query = (
         Query('@vector:[VECTOR_RANGE 0.60 $query_vector]=>{$YIELD_DISTANCE_AS: vector_score}') 
@@ -129,7 +129,7 @@ def filterString(input_string) -> str:
 class Episodes:
 
     def __init__(self) -> None:
-        self.episodes = [];
+        self.episodes = []
 
     # Function to extract fragment between two strings
     def extractFragment(self, file_path) -> str|None:
@@ -177,7 +177,7 @@ class Episodes:
 class Transcriptions:
 
     def __init__(self) -> None:
-        self.transcriptions = [];
+        self.transcriptions = []
 
     # Prepare data
     def prepare(self) -> None:
