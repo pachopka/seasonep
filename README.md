@@ -25,7 +25,7 @@ This repo is just <b>a working proto</b> written for a manual run on Linux (Ubun
 
 ## Getting Started
 
-All needed packages I've installed locally, just to make my hands dirty, but I believe the same goal could be achieved using Google Colab. You can use this awesome tutorial [Similarity Search with Redis as a Vector Database](https://github.com/RedisVentures/redis-vss-getting-started/blob/main/vector_similarity_with_redis.ipynb) 
+All needed packages I've installed locally, just to make my hands dirty, but I believe the same goal could be achieved using Google Colab. You can use this awesome tutorial [Similarity Search with Redis as a Vector Database](https://github.com/RedisVentures/redis-vss-getting-started/blob/main/vector_similarity_with_redis.ipynb) as an example of how to use Redis as Vector database on Google Colab, but you will just need to bring your own dataset.
 
 ### Prerequisites
 
