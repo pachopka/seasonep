@@ -8,17 +8,18 @@ So it should be a tool that can make this for you, right?
 
 But I need them sorted by a season and renamed properly like <i>'TV show name - sXXeXX - Episode name.mkv'</i>
 
-So the idea is to get subtitles from the Internet and use them as a source, as they are usually named like <i>'TV-show-name - sXXeXX - Episode name.srt'</i>, so I can get all data I need: TV-show name, Season number, Episode number, Episode name and subtitles itself. I just need something that can transcript speach from the video into text and after that compare it with subtitles.
+So the idea is to get subtitles from the Internet and use them as a source, as they are usually named like <i>'TV-show-name - sXXeXX - Episode name.srt'</i>, so I can get all data I need: TV-show name, Season number, Episode number, Episode name and subtitles. I just need something that can transcript speach from the video into text and compare it with subtitles.
 
-This repo is just <b>a working proto</b> written for a manual run on Linux (Ubuntu), please use at <b>your own risk</b> and make sure you have your data backuped.
+### Warning
+This repo is just <b>a working proto</b> written for a manual run on Linux (Ubuntu), please use at <b>your own risk</b> and make sure you have your <b>data backuped</b>.
 
 ### Built With
 
-* basic <b>Shell</b> scripting (made for use on Ubuntu, not cross-platform, but could be adjusted)
+* basic <b>Shell</b> scripting (made for use on Ubuntu, not cross-platform)
 * basic <b>Python</b> scripting
 * <b>ffmpeg</b>: to prepare sound fragments
 * <b>openai/whisper</b>: a general-purpose speech recognition model to transcript sound fragments
-* <b>Redis stack</b>: to store data and make vector-based search
+* <b>Redis Stack</b>: to store data and make vector-based search
 * <b>SentenceTransformers</b> framework: to generate embeddings on text
 
 
