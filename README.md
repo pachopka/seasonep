@@ -51,4 +51,5 @@ Run executable start.sh file
 
 * <b>FFMPEG</b>: I'm extracting 30 seconds of audio (in my case starting from 1:30 minute) just to make it faster to analyze by whipser, but it's more wise to use longer sound fragments and extract them from the 'middle' of the file to make dataset more diversed
 * <b>Whisper</b>: [Base model](https://github.com/openai/whisper?tab=readme-ov-file#available-models-and-languages) is in use
-* <b>SentenceTransformers</b>: I've played with [several models](https://huggingface.co/sentence-transformers) and found that [sentence-t5-base model](https://www.sbert.net/docs/pretrained_models.html) is most accurate on my dataset (short sentences dialogs)
+* <b>SentenceTransformers</b>: I've played with [several models](https://huggingface.co/sentence-transformers) and found that [sentence-t5-base model](https://www.sbert.net/docs/pretrained_models.html) is most accurate on my dataset (short sentences conversations)
+* Final results: 90% accuracy on 61 row dataset. There is a room to improve :-)
