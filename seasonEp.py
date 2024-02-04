@@ -72,43 +72,6 @@ def crIndexRedis() -> None:
     # Index Creation
     CLIENT.ft(INDEX_NAME).create_index(fields=schema, definition=definition)
 
-# Search in Redis Index using Vector Search Similarity (VSS)
-def shIndexRedisVss() -> list:
-
-    print('Combine and search on Redis')
-    #Prepare a query, limit results to 0.60 radius
-    range_query = (
-        Query('@vector:[VECTOR_RANGE 0.60 $query_vector]=>{$YIELD_DISTANCE_AS: vector_score}') 
-        .sort_by('vector_score')
-        .return_fields('vector_score', 'id', 'season', 'filename')
-        .paging(0, 1)
-        .dialect(2)
-    )
-
-    findings = []
-    # Get keys of all translations entities
-    transcrptions_keys = CLIENT.keys(DOC_TR_PREFIX+'*')
-    for tr_key in transcrptions_keys:
-        tr_embed = CLIENT.json().get(tr_key, '$.transcription_embeddings')
-        tr_filename = CLIENT.json().get(tr_key, '$.filename')
-        # Search in Index
-        result_docs = CLIENT.ft(INDEX_NAME).search(range_query, { 'query_vector': np.array(tr_embed, dtype=np.float32).tobytes() }).docs
-        for doc in result_docs:
-            vector_score = round(1 - float(doc.vector_score), 2)
-            filename = doc.filename[0:-4].replace(',','')
-            for i, sublist in enumerate(findings, start=0):
-                if sublist[2] == filename and sublist[3] < vector_score:
-                    findings.pop(i)
-                    break
-            findings.append([
-                tr_filename[0],
-                doc.season,
-                filename,
-                vector_score
-            ])
-
-    return findings
-
 
 # Utility function
 # Prepare the text fragment
@@ -206,8 +169,61 @@ episodes = Episodes().prepare()
 
 transcriptions = Transcriptions().prepare()
 
+# Have all needed now
+# Search in Redis Index using Vector Search Similarity (VSS)
+def shIndexRedisVss() -> list:
+
+    print('Combine and search on Redis')
+    #Prepare a query, limit results to 0.60 radius
+    range_query = (
+        Query('@vector:[VECTOR_RANGE 0.60 $query_vector]=>{$YIELD_DISTANCE_AS: vector_score}') 
+        .sort_by('vector_score')
+        .return_fields('vector_score', 'id', 'season', 'filename')
+        .paging(0, 1)
+        .dialect(2)
+    )
+
+    findings = []
+    # Get keys of all translations entities
+    transcrptions_keys = CLIENT.keys(DOC_TR_PREFIX+'*')
+    for tr_key in transcrptions_keys:
+        tr_embed = CLIENT.json().get(tr_key, '$.transcription_embeddings')
+        tr_filename = CLIENT.json().get(tr_key, '$.filename')
+        # Search in Index
+        result_docs = CLIENT.ft(INDEX_NAME).search(range_query, { 'query_vector': np.array(tr_embed, dtype=np.float32).tobytes() }).docs
+        for doc in result_docs:
+            # Flag variable, too much loops...
+            check_next = False
+            vector_score = round(1 - float(doc.vector_score), 2)
+            filename = doc.filename[0:-4].replace(',','')
+            # Checking if we already have same filename recorded
+            for i, sublist in enumerate(findings):
+                if sublist[2] == filename:
+                    # There is a better guess now, replace it
+                    if sublist[3] < vector_score:
+                        findings.pop(i)
+                    # Lower score now, continue to the next item
+                    else:
+                        check_next = True
+                    break
+            if check_next:
+                continue
+
+            findings.append([
+                tr_filename[0],
+                doc.season,
+                filename,
+                vector_score
+            ])
+
+    return findings
+
+# Results are here
 results = shIndexRedisVss()
+
 print('Magic done')
+
+# Creating CSV file
 exportFrame = pd.DataFrame(results, columns=['Video','Season', 'Filename', 'Score'])
 exportFrame.to_csv('dataset/results.csv')
 print('Csv file with results was created')

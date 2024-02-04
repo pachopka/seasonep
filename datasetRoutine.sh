@@ -30,6 +30,6 @@ mkdir dataset/transcripted
 
 for ((i=0;i<$AUDIO_ARGS_ELEMENTS;i++)); do
 
-    whisper --language=en --model=base --output_format txt --output_dir dataset/transcripted dataset/audio/${AUDIO_ARGS[${i}]}
+    whisper --language=en --model=base.en --output_format txt --output_dir dataset/transcripted dataset/audio/${AUDIO_ARGS[${i}]}
 done
 echo 'Transcriptions have been created'

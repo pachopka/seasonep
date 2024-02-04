@@ -9,12 +9,7 @@ if [ $dr == 0 ]; then
     python3 seasonEp.py
     se=$?
     if [ $se == 0 ]; then 
-        echo 'Continue to files operations'
-        bash filesOperations.sh
-        fo=$?
-        if [ $fo != 0 ]; then
-            echo "ERROR - return code: $fo"
-        fi
+        echo 'Please check results in CSV file'
     else
         echo "ERROR - return code: $se"
     fi
