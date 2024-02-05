@@ -37,9 +37,9 @@ All needed packages I've installed locally to make hands dirty, but I believe th
 
 ### Dataset
 
-1. Copy subtitles files (now it's working with filenames like <i>'TV-show-name - sXXeXX - Episode name.srt'</i>) into <code>dataset/subtitles</code> directory
+1. Copy subtitles files (now it should work with filenames like <i>'TV-show-name - sXXeXX.srt'</i>) into <code>dataset/subtitles</code> directory
 2. Copy video files into <code>dataset/video</code> directory, no subfolders allowed. At the moment it works with one predefined file extension.
-3. Adjust video files extension variable [VIDEO_EXT] at <i>datasetRoutine.sh</i> file.
+3. Adjust video files extension variable [VIDEO_EXT] at <i>dataroutine.sh</i> file.
 
 ## Usage
 

@@ -1,12 +1,12 @@
 #!/usr/bin/bash
 
-bash datasetRoutine.sh
+bash dataroutine.sh
 dr=$?
 
 if [ $dr == 0 ]; then 
     echo 'Dataset Routine has been finished'
     echo 'Continue to perform some Magic'
-    python3 seasonEp.py
+    python3 seasonep.py
     se=$?
     if [ $se == 0 ]; then 
         echo 'Please check results in CSV file'
