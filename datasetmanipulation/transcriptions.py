@@ -1,7 +1,7 @@
 import os
-from dataset_abstr import DataSetAbstr
+from datasetmanipulation.abstr import DataSetAbstr
 
-#Transcription dataset class
+# Transcription dataset class
 class DataSetTranscriptions(DataSetAbstr):
 
     def __init__(self) -> None:

@@ -21,6 +21,7 @@ So the idea was to get subtitles from the Internet and use them as a source, as 
 * <b>openai/whisper</b>: a general-purpose speech recognition model to transcript sound fragments
 * <b>Redis Stack</b>: to store data and make vector-based search
 * <b>SentenceTransformers</b> framework: to generate embeddings on text
+* <b>python-colorcodes</b> class: to make text print fancy
 
 
 ## Getting Started
@@ -33,7 +34,7 @@ All needed packages I've installed locally to make hands dirty, but I believe th
 2. Python librares: [Pandas](https://pandas.pydata.org/getting_started.html), [redis-py](https://redis-py.readthedocs.io/en/stable/), [NumPy](https://numpy.org/install/), [sentence_transformers](https://www.sbert.net/docs/installation.html)
 3. Installed [Redis Stack](https://redis.io/docs/install/install-stack/)
 4. Installed [openai/whisper](https://github.com/openai/whisper)
-5. Installed [ffmpeg](https://ffmpeg.org/download.html) (openai/whisper should install it for you)
+5. Installed [ffmpeg](https://ffmpeg.org/download.html)
 
 ### Dataset
 

@@ -1,7 +1,7 @@
 import os
-from dataset_abstr import DataSetAbstr
+from datasetmanipulation.abstr import DataSetAbstr
 
-#Subtitles dataset class
+# Subtitles dataset class
 class DataSetSubtitles(DataSetAbstr):
 
     def __init__(self) -> None:

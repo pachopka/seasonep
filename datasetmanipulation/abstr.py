@@ -6,7 +6,7 @@ from abc import ABC
 class DataSetAbstr(ABC):
 
     def __init__(self) -> None:
-        self.DIR_PATH = os.path.dirname(__file__)
+        self.DIR_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
         self.datasetresult = []
     
     # Utility function
